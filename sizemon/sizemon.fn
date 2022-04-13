@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+sizemon(){
+if [[ -z $(command -v bc) ]]; then echo "install bc"; return; fi
+if [[ -p "/dev/stdin" ]]; then
+        file="$(cat)"
+else
+        if [[ -z "$1" ]]; then
+                echo "provide a filename to monitor as \$1 or pipe in a filename"
+                return
+        fi
+        file="$1"
+fi
+echo "$file"$'\n'
+count=1
+while true; do
+        count=$((count +1))
+        if [[ $((count % 2)) -eq 0 ]]; then
+                dots="."
+        else
+                dots=".."
+        fi
+        one=$(echo $(wc -c "$file") | awk '{ print $1 }')
+        oneMb=$(echo "$one /1024/1024" | bc)
+        sleep 2
+        two=$(echo $(wc -c "$file") | awk '{ print $1 }')
+        twoMb=$(echo "$two /1024/1024" | bc)
+        if [[ $one != $two ]]; then
+                echo -e "\e[1A\e[K$twoMb MB  $two bytes $dots"
+        fi
+done
+}
