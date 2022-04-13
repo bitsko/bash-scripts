@@ -1,7 +1,7 @@
 # pawk
 
-#simplify awk syntax
+simplify awk syntax
 
-#https://unix.stackexchange.com/questions/282516/simple-awk-wrapper-function-or-alias
+https://unix.stackexchange.com/questions/282516/simple-awk-wrapper-function-or-alias
 
-#–manatwork
+–manatwork
