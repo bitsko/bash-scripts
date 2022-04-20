@@ -1,0 +1,29 @@
+os_update(){
+
+os_release_ID=$(source /etc/os-release; echo $ID)
+
+os_release_ID_LIKE=$(source /etc/os-release; echo $ID_LIKE | awk '{ print $1 }')
+
+if [[ "$os_release_ID" == "debian" ]]; then
+	echo "$os_release_ID $(uname -a)"
+	sudo apt-get update && sudo apt-get upgrade -y
+
+elif [[ "$os_release_ID" == "ubuntu" ]]; then
+	echo "$os_release_ID $(uname -a)"
+	sudo apt-get update && sudo apt-get upgrade -y
+
+elif [[ "$os_release_ID" == "manjaro" ]]; then
+	echo "$os_release_ID $(uname -a)"
+	sudo pacman -Syyu
+
+elif [[ "$os_release_ID" == "fedora" ]]; then
+	echo "$os_release_ID $(uname -a)"
+	sudo dnf upgrade -y
+
+elif [[ "$os_release_ID_LIKE" == "suse" ]]; then
+	echo "$os_release_ID_LIKE $(uname -a)"
+	sudo zypper refresh && sudo zypper update
+
+else echo "operating system unknown"
+
+fi; }
