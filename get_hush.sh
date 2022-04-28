@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # https://github.com/hush-shell/hush
 
+# curl -s GET https://github.com/hush-shell/hush/releases | grep tar.gz | cut -d '>' -f 2 | grep hush | sed 's/<\/span//g'
+
 hshVer="v0.1.2-alpha"
 hshDir="hush-0.1.2-x86_64"
 hshFil="$hshDir".tar.gz
