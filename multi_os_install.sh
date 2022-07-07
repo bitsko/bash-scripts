@@ -6,7 +6,7 @@ declare -a debian_array=( debian ubuntu raspbian linuxmint pop )
 declare -a archos_array=( manjaro-arm manjaro endeavouros arch )
 
 os_releaseID=$(source /etc/os-release; echo $ID)
-if [[ "${deb_os_array[*]}" =~ "$os_releaseID" ]]; then
+if [[ "${debian_array[*]}" =~ "$os_releaseID" ]]; then
         sudo apt update
         sudo apt -y upgrade
 ##
