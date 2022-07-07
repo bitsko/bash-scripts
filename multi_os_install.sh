@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pkg_check_fn(){ if [[ "$?" != 0 ]]; then echo "package update failed"; exit 1; fi; }
+pkg_check_fn(){ if [[ "$?" != 0 ]]; then echo $'\n'"package update failed"; exit 1; fi; }
 
 declare -a debian_array=( debian ubuntu raspbian linuxmint pop )
 declare -a archos_array=( manjaro-arm manjaro endeavouros arch )
