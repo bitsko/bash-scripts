@@ -6,3 +6,5 @@ autoreconf -fi
 make LDFLAGS=-all-static
 make check
 sudo make install
+sudo ln -s /usr/local/bin/jq /usr/bin/jq
+
