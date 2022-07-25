@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+script_exit(){
+  unset debug_step debug_location # etc
+}
+
+progress_banner(){
+      echo "***** $debug_step *****"
+}
+
+debug_location(){
+  if [[ "$?" != 0 ]]; then
+	echo $'\n\n'"*****${debug_step} has failed!*****"$'\n\n'
+	script_exit
+  unset -f script_exit
+  exit 1
+  fi
+}
+
+debug_step="configuring program"
+progress_banner
+echo "did this command fail?"
+debug_location
