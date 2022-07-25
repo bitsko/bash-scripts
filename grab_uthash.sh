@@ -9,6 +9,6 @@ if (( $(echo "$wget_version >= 1.16" | bc -l) )); then
 	wget -q --show-progress \
 	${uthashurl}{utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h}
 else
-  wget ${uthashurl}{utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h}
+  	wget ${uthashurl}{utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h}
 fi
 sudo cp {utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h} /usr/local/include
