@@ -11,4 +11,8 @@ if (( $(echo "$wget_version >= 1.16" | bc -l) )); then
 else
   	wget ${uthashurl}{utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h}
 fi
-sudo cp {utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h} /usr/local/include
+if command -v sudo &>/dev/null; then
+	sudo cp {utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h} /usr/local/include
+else
+	cp {utarray.h,uthash.h,utlist.h,utringbuffer.h,utstack.h,utstring.h} /usr/local/include
+fi
