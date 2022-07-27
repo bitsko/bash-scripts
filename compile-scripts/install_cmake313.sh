@@ -7,7 +7,7 @@ tar -zxvf  ${cmake_targz}
 cd "${cmake_version}"
 ./configure
 make 
-# make install
-# /usr/local/bin/cmake --version
-# ln -s /usr/local/bin/cmake /usr/bin/
-# cmake --version
+make install
+/usr/local/bin/cmake --version
+ln -s /usr/local/bin/cmake /usr/bin/
+cmake --version
