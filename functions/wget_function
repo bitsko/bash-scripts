@@ -1,34 +1,32 @@
 #!/usr/bin/env bash
 wget_function(){
-  
-  completion_check(){ 
-    if [[ "$?" != 0 ]]; then 
-        file_downloaded=1
-    fi
-  }
-  
-  if [[ $(command -v wget &> /dev/null) && $(command -v bc &> /dev/null) ]]; then
-    wget_version=$(wget --version | head -n 1 | cut -d ' ' -f 3 | cut -c -4)
-    if (( $(echo "$wget_version >= 1.16" | bc -l) )); then
-		  wget "$1" -q --show-progress; completion_check
-	  fi
-  fi
-  
-  if [[ "$file_downloaded" == 0 ]]; then
-    wget "$1"; completion_check
-  fi
-  
-  if [[ "$file_downloaded" == 0 && $(command -v curl &> /dev/null) ]]; then
-      curl -LO -X GET "$1"; completion_check
- fi
- 
- if [[ "$file_downloaded" == 0 && $(command -v lynx &> /dev/null) ]]; then
-    the_url="$1"
-    the_file=$(echo "$1" | rev | cut -d '/' -f 1 | rev)
-   lynx --dump "$the_url" > "$the_file"; completion_check
- fi
- 
- if [[ "$file_downloaded == 0 ]];then
-  echo "cannot download the file"
- fi
+	completion_check(){ 
+	if [[ "$?" != 0 ]]; then 
+		file_downloaded=1
+	fi
+	}
+	if [[ $(command -v wget &> /dev/null) && $(command -v bc &> /dev/null) ]]; then
+		wget_version=$(wget --version | head -n 1 | cut -d ' ' -f 3 | cut -c -4)
+		if (( $(echo "$wget_version >= 1.16" | bc -l) )); then
+			wget "$1" -q --show-progress
+			completion_check
+		fi
+	fi
+	if [[ "$file_downloaded" == 0 ]]; then
+		wget "$1"
+		completion_check
+	fi
+	if [[ "$file_downloaded" == 0 && $(command -v curl &> /dev/null) ]]; then
+		curl -LO -X GET "$1"
+		completion_check
+	fi
+	if [[ "$file_downloaded" == 0 && $(command -v lynx &> /dev/null) ]]; then
+		the_url="$1"
+		the_file=$(echo "$1" | rev | cut -d '/' -f 1 | rev)
+		lynx --dump "$the_url" > "$the_file"
+		completion_check
+	fi
+	if [[ "$file_downloaded" == 0 ]];then
+		echo "cannot download the file, install wget"
+	fi
 }
